@@ -1,0 +1,15 @@
+-------Install and setup MCP----------
+>> .\python.exe -m pip install comfy-cli comfy-mcp
+>> .\Scripts\comfy.exe set-default D:\a\ComfyUI\ComfyUI
+
+
+-------claude code----------
+>> claude mcp remove comfyui
+>> claude mcp add comfyui -s user -- "D:\a\ComfyUI\python_embeded\Scripts\comfy-mcp.exe"
+
+
+-----codex--------
+>> codex mcp add comfyui -- "D:\a\ComfyUI\python_embeded\Scripts\comfy-mcp.exe"
+
+---- for all (clude code, codex, antigravity) you can simple put a prompt ----
+add comfyui mcp it is installe din the folder D:\a\ComfyUI\python_embeded\Scripts
