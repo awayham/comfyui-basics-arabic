@@ -6,3 +6,9 @@
 !hf download Comfy-Org/MiniMax-H3 --include "diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors" --local-dir .
 !hf download Comfy-Org/MiniMax-H3 --include "vae/minimax_h3_video_vae_fp16.safetensors" --local-dir .
 !hf download Comfy-Org/MiniMax-H3 --include "vae/minimax_h3_audio_vae_fp32.safetensors" --local-dir .
+
+
+-------------------------------------------------------
+اسم المستخدم وكلمة المرور لمستعرض الملفات
+admin
+adminadmin12
