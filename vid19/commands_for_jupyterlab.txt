@@ -1,0 +1,8 @@
+
+%cd /workspace/runpod-slim/ComfyUI/models
+%env HF_XET_HIGH_PERFORMANCE=1
+
+!hf download Comfy-Org/MiniMax-H3 --include "text_encoders/qwen3vl_32b_minimax_h3_int8_convrot.safetensors" --local-dir .
+!hf download Comfy-Org/MiniMax-H3 --include "diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors" --local-dir .
+!hf download Comfy-Org/MiniMax-H3 --include "vae/minimax_h3_video_vae_fp16.safetensors" --local-dir .
+!hf download Comfy-Org/MiniMax-H3 --include "vae/minimax_h3_audio_vae_fp32.safetensors" --local-dir .
