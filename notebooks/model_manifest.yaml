@@ -157,7 +157,48 @@ files:
   source: archive://awAyham/comfyui-models
   revision: null
   size_gb: 5.58
+- dest: diffusion_models/z_image_turbo_int8_convrot.safetensors
+  source: hf://Comfy-Org/z_image_turbo
+  remote: split_files/diffusion_models/z_image_turbo_int8_convrot.safetensors
+  revision: 6fc90a3b1b653e935a0d175e260736de25b84df5
+  size_gb: 6.2
+- dest: diffusion_models/z_image_turbo_bf16.safetensors
+  source: hf://Comfy-Org/z_image_turbo
+  remote: split_files/diffusion_models/z_image_turbo_bf16.safetensors
+  revision: 6fc90a3b1b653e935a0d175e260736de25b84df5
+  size_gb: 12.31
+- dest: text_encoders/qwen_3_4b_fp8_mixed.safetensors
+  source: hf://Comfy-Org/z_image_turbo
+  remote: split_files/text_encoders/qwen_3_4b_fp8_mixed.safetensors
+  revision: 6fc90a3b1b653e935a0d175e260736de25b84df5
+  size_gb: 5.63
+- dest: text_encoders/qwen_3_4b.safetensors
+  source: hf://Comfy-Org/z_image_turbo
+  remote: split_files/text_encoders/qwen_3_4b.safetensors
+  revision: 6fc90a3b1b653e935a0d175e260736de25b84df5
+  size_gb: 8.04
+- dest: vae/ae.safetensors
+  source: hf://Comfy-Org/z_image_turbo
+  remote: split_files/vae/ae.safetensors
+  revision: 6fc90a3b1b653e935a0d175e260736de25b84df5
+  size_gb: 0.34
+- dest: loras/z_image_turbo_distill_patch_lora_bf16.safetensors
+  source: hf://Comfy-Org/z_image_turbo
+  remote: split_files/loras/z_image_turbo_distill_patch_lora_bf16.safetensors
+  revision: 6fc90a3b1b653e935a0d175e260736de25b84df5
+  size_gb: 0.16
 bundles:
+  z-image-turbo-t4:
+  - diffusion_models/z_image_turbo_int8_convrot.safetensors
+  - text_encoders/qwen_3_4b_fp8_mixed.safetensors
+  - vae/ae.safetensors
+  z-image-turbo:
+  - diffusion_models/z_image_turbo_bf16.safetensors
+  - text_encoders/qwen_3_4b.safetensors
+  - vae/ae.safetensors
+  sd15-classic:
+  - checkpoints/v1-5-pruned-emaonly.safetensors
+  - vae/vae-ft-mse-840000-ema-pruned.safetensors
   qwen-edit-2511:
   - diffusion_models/qwen-image-edit-2511-Q8_0.gguf
   - text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors
@@ -172,9 +213,6 @@ bundles:
   - diffusion_models/flux-2-klein-4b-Q8_0.gguf
   - text_encoders/qwen_3_4b_fp4_flux2.safetensors
   - vae/flux2-vae.safetensors
-  sd15-classic:
-  - checkpoints/v1-5-pruned-emaonly.safetensors
-  - vae/vae-ft-mse-840000-ema-pruned.safetensors
   chatterbox-tts:
   - chatterbox/chatterbox/t3_cfg.safetensors
   - chatterbox/chatterbox/s3gen.safetensors
