@@ -1,20 +1,12 @@
-# model_manifest.yaml — pinned catalog for Colab Model Pull cell
-# Sources are upstream HF repos with fixed SHAs. Do not point at LFS floats.
-# Official TextGenerate LLMs (CLIPLoader + TextGenerate nodes, models/text_encoders/):
-#   llm_gemma4_text_gen       Gemma4 E4B fp8  (workflow template default)
-#   llm_gemma4_text_gen_t4    Gemma4 E2B int8 (lighter T4)
-#   llm_qwen3_5_text_gen      Qwen3.5 4B bf16 (workflow template default)
-#   llm_qwen3_5_text_gen_t4   Qwen3.5 2B bf16 (lighter T4)
-# GGUF LLMs (for ComfyUI-GGUF / ComfyUI-LLM-text-processor custom nodes):
-#   llm-qwen3-8b-t4 / llm-qwen2.5-7b-t4 / llm-qwen2.5-3b-t4 / llm-qwen2.5-1.5b-t4
-# BUNDLE guide (approx GB):
-#   z-image-turbo-t4 12.3 · z-image-turbo 20.9 · sd15-classic 4.6
-#   qwen-edit-2511 32.3 · qwen-image-2.1-edit 17.4 · flux2-klein 8.6
-#   chatterbox-tts 10.5 · depth-3d-trellis 5.0 · 3d-pixal3d-trellis2 15.2
-#   wan-vace-t4 14.6 · wan-scail2-t4 25.7 (WARN ~24GB VRAM) · extras 16.3
-#   llm_gemma4_text_gen 9.1 · llm_gemma4_text_gen_t4 5.2
-#   llm_qwen3_5_text_gen 9.3 · llm_qwen3_5_text_gen_t4 4.6
-#   starter-t4 ~22 (z-image int8 + qwen3.5-2B)
+# model_manifest.yaml — pinned catalog for Colab Model Pull
+# Sources: official Comfy-Org repos with fixed SHAs where available.
+# ComfyUI folder_paths.py reference (standard model dirs):
+#   audio_encoders · checkpoints · clip · clip_vision · configs · controlnet
+#   detection · diffusers · diffusion_models · embeddings · frame_interpolation
+#   geometry_estimation · gligen · hypernetworks · latent_upscale_models · loras
+#   model_patches · optical_flow · photomaker · style_models · text_encoders
+#   unet · upscale_models · vae · vae_approx
+# Bundles map to official workflow templates. T4 variants use int8/fp8/nvfp4 quants.
 
 files:
 - dest: background_removal/birefnet.safetensors
@@ -333,6 +325,42 @@ files:
   revision: 5d50a2252bf1bcd49e5fee9b5f296986d442682b
   size_gb: 4.55
   notes: "Qwen3.5 2B bf16 — lighter T4 variant for text gen"
+- dest: diffusion_models/qwen_image_edit_2511_fp8mixed.safetensors
+  source: hf://Comfy-Org/Qwen-Image-Edit_ComfyUI
+  remote: split_files/diffusion_models/qwen_image_edit_2511_fp8mixed.safetensors
+  revision: f68ace85e60b4a02a323e394253731947657b7d2
+  size_gb: 20.53
+  notes: "Official template default for image_qwen_image_edit_2511"
+- dest: diffusion_models/wan2.1_14B_SCAIL_2_int8_convrot.safetensors
+  source: hf://Comfy-Org/SCAIL-2
+  remote: diffusion_models/wan2.1_14B_SCAIL_2_int8_convrot.safetensors
+  revision: fe3c728bc793ba21ca674688f822afb709ad44fb
+  size_gb: 16.65
+  notes: "SCAIL-2 int8 — recommended for T4 (fits 16GB VRAM with lowvram)"
+- dest: diffusion_models/wan2.1_14B_SCAIL_2_nvfp4_mxpf8_mix.safetensors
+  source: hf://Comfy-Org/SCAIL-2
+  remote: diffusion_models/wan2.1_14B_SCAIL_2_nvfp4_mxpf8_mix.safetensors
+  revision: fe3c728bc793ba21ca674688f822afb709ad44fb
+  size_gb: 11.02
+  notes: "SCAIL-2 nvfp4 — smallest official quant"
+- dest: diffusion_models/wan2.1_vace_14B_fp16.safetensors
+  source: hf://Comfy-Org/Wan_2.1_ComfyUI_repackaged
+  remote: split_files/diffusion_models/wan2.1_vace_14B_fp16.safetensors
+  revision: 123acf1cc74bccbb9bfff8ac1ee72edc08c2341d
+  size_gb: 34.68
+  notes: "Official VACE 14B — TOO BIG for free T4 (16GB VRAM). Use 1.3B for T4."
+- dest: clip/clip_vit_l_14.safetensors
+  source: hf://openai/clip-vit-large-patch14
+  remote: model.safetensors
+  revision: 32bd64288804d66eefd0ccbe215aa642df71cc41
+  size_gb: 1.71
+  notes: "CLIP-L — for SD1.5 / classic workflows that need separate CLIP loader"
+- dest: controlnet/control_v11p_sd15_canny.safetensors
+  source: hf://lllyasviel/sd-controlnet-canny
+  remote: diffusion_pytorch_model.safetensors
+  revision: 7f2f69197050967007f6bbd23ab5e52f0384162a
+  size_gb: 1.45
+  notes: "ControlNet Canny for SD1.5 — edge-guided generation"
 
 bundles:
   z-image-turbo-t4:
@@ -348,8 +376,10 @@ bundles:
   sd15-classic:
     - checkpoints/v1-5-pruned-emaonly.safetensors
     - vae/vae-ft-mse-840000-ema-pruned.safetensors
+    - clip/clip_vit_l_14.safetensors
+    - controlnet/control_v11p_sd15_canny.safetensors
   qwen-edit-2511:
-    - diffusion_models/qwen-image-edit-2511-Q8_0.gguf
+    - diffusion_models/qwen_image_edit_2511_fp8mixed.safetensors
     - text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors
     - vae/qwen_image_vae.safetensors
     - loras/Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors
@@ -400,13 +430,11 @@ bundles:
     - checkpoints/sam3.1_multiplex_fp16.safetensors
     - loras/Wan21_CausVid_14B_T2V_lora_rank32.safetensors
   wan-scail2-t4:
-    - diffusion_models/wan2.1_14B_SCAIL_2-Q6_K.gguf
+    - diffusion_models/wan2.1_14B_SCAIL_2_int8_convrot.safetensors
     - text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors
     - vae/Wan2_1_VAE_bf16.safetensors
     - clip_vision/clip_vision_h.safetensors
-    - checkpoints/sam3.1_multiplex_fp16.safetensors
     - loras/wan2.1_SCAIL_2_DPO_lora_bf16.safetensors
-    - loras/lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors
   extras:
     - background_removal/birefnet.safetensors
     - loras/Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors
@@ -434,3 +462,17 @@ bundles:
     - vae/ae.safetensors
     - loras/z_image_turbo_distill_patch_lora_bf16.safetensors
     - text_encoders/qwen3.5_2b_bf16.safetensors
+  wan-scail2-full:
+    - diffusion_models/wan2.1_14B_SCAIL_2_int8_convrot.safetensors
+    - text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors
+    - vae/Wan2_1_VAE_bf16.safetensors
+    - clip_vision/clip_vision_h.safetensors
+    - loras/wan2.1_SCAIL_2_DPO_lora_bf16.safetensors
+    - loras/lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors
+  wan-vace-full:
+    - diffusion_models/wan2.1_vace_14B_fp16.safetensors
+    - text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors
+    - vae/wan_2.1_vae.safetensors
+    - clip_vision/clip_vision_h.safetensors
+    - checkpoints/sam3.1_multiplex_fp16.safetensors
+    - loras/Wan21_CausVid_14B_T2V_lora_rank32.safetensors
