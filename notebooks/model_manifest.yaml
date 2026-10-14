@@ -1,13 +1,3 @@
-# model_manifest.yaml — pinned catalog for Colab Model Pull
-# Sources: official Comfy-Org repos with fixed SHAs where available.
-# ComfyUI folder_paths.py reference (standard model dirs):
-#   audio_encoders · checkpoints · clip · clip_vision · configs · controlnet
-#   detection · diffusers · diffusion_models · embeddings · frame_interpolation
-#   geometry_estimation · gligen · hypernetworks · latent_upscale_models · loras
-#   model_patches · optical_flow · photomaker · style_models · text_encoders
-#   unet · upscale_models · vae · vae_approx
-# Bundles map to official workflow templates. T4 variants use int8/fp8/nvfp4 quants.
-
 files:
 - dest: background_removal/birefnet.safetensors
   source: hf://Comfy-Org/BiRefNet
@@ -282,197 +272,197 @@ files:
   remote: Qwen3-8B-Q4_K_M.gguf
   revision: 7c41481f57cb95916b40956ab2f0b139b296d974
   size_gb: 5.03
-  notes: "LLM prompt-rewrite / caption · T4 Q4_K_M · ComfyUI-GGUF text-to-text"
+  notes: LLM prompt-rewrite / caption · T4 Q4_K_M · ComfyUI-GGUF text-to-text
 - dest: text_encoders/Qwen2.5-7B-Instruct-Q4_K_M.gguf
   source: hf://bartowski/Qwen2.5-7B-Instruct-GGUF
   remote: Qwen2.5-7B-Instruct-Q4_K_M.gguf
   revision: 8911e8a47f92bac19d6f5c64a2e2095bd2f7d031
   size_gb: 4.68
-  notes: "LLM strong Arabic+EN · single-file Q4_K_M · T4 friendly"
+  notes: LLM strong Arabic+EN · single-file Q4_K_M · T4 friendly
 - dest: text_encoders/Qwen2.5-3B-Instruct-q4_k_m.gguf
   source: hf://Qwen/Qwen2.5-3B-Instruct-GGUF
   remote: qwen2.5-3b-instruct-q4_k_m.gguf
   revision: 7dabda4d13d513e3e842b20f0d435c732f172cbe
   size_gb: 2.1
-  notes: "LLM lightest · for prompt helper on free T4 with tight VRAM"
+  notes: LLM lightest · for prompt helper on free T4 with tight VRAM
 - dest: text_encoders/Qwen2.5-1.5B-Instruct-q4_k_m.gguf
   source: hf://Qwen/Qwen2.5-1.5B-Instruct-GGUF
   remote: qwen2.5-1.5b-instruct-q4_k_m.gguf
   revision: 91cad51170dc346986eccefdc2dd33a9da36ead9
   size_gb: 1.12
-  notes: "LLM micro · caption assist only"
+  notes: LLM micro · caption assist only
 - dest: text_encoders/gemma4_e4b_it_fp8_scaled.safetensors
   source: hf://Comfy-Org/Gemma4
   remote: text_encoders/gemma4_e4b_it_fp8_scaled.safetensors
   revision: 63d0f7c476756b88910170c1df75e2384ea1af31
   size_gb: 9.06
-  notes: "Gemma4 E4B IT fp8 — official TextGenerate default for llm_gemma4_text_gen"
+  notes: Gemma4 E4B IT fp8 — official TextGenerate default for llm_gemma4_text_gen
 - dest: text_encoders/gemma4_e2b_it_int8_convrot.safetensors
   source: hf://Comfy-Org/Gemma4
   remote: text_encoders/gemma4_e2b_it_int8_convrot.safetensors
   revision: 63d0f7c476756b88910170c1df75e2384ea1af31
   size_gb: 5.2
-  notes: "Gemma4 E2B IT int8 — lighter T4 variant for text gen"
+  notes: Gemma4 E2B IT int8 — lighter T4 variant for text gen
 - dest: text_encoders/qwen3.5_4b_bf16.safetensors
   source: hf://Comfy-Org/Qwen3.5
   remote: text_encoders/qwen3.5_4b_bf16.safetensors
   revision: 5d50a2252bf1bcd49e5fee9b5f296986d442682b
   size_gb: 9.32
-  notes: "Qwen3.5 4B bf16 — official TextGenerate default for llm_qwen3_5_text_gen"
+  notes: Qwen3.5 4B bf16 — official TextGenerate default for llm_qwen3_5_text_gen
 - dest: text_encoders/qwen3.5_2b_bf16.safetensors
   source: hf://Comfy-Org/Qwen3.5
   remote: text_encoders/qwen3.5_2b_bf16.safetensors
   revision: 5d50a2252bf1bcd49e5fee9b5f296986d442682b
   size_gb: 4.55
-  notes: "Qwen3.5 2B bf16 — lighter T4 variant for text gen"
+  notes: Qwen3.5 2B bf16 — lighter T4 variant for text gen
 - dest: diffusion_models/qwen_image_edit_2511_fp8mixed.safetensors
   source: hf://Comfy-Org/Qwen-Image-Edit_ComfyUI
   remote: split_files/diffusion_models/qwen_image_edit_2511_fp8mixed.safetensors
   revision: f68ace85e60b4a02a323e394253731947657b7d2
   size_gb: 20.53
-  notes: "Official template default for image_qwen_image_edit_2511"
+  notes: Official template default for image_qwen_image_edit_2511
 - dest: diffusion_models/wan2.1_14B_SCAIL_2_int8_convrot.safetensors
   source: hf://Comfy-Org/SCAIL-2
   remote: diffusion_models/wan2.1_14B_SCAIL_2_int8_convrot.safetensors
   revision: fe3c728bc793ba21ca674688f822afb709ad44fb
   size_gb: 16.65
-  notes: "SCAIL-2 int8 — recommended for T4 (fits 16GB VRAM with lowvram)"
+  notes: SCAIL-2 int8 — recommended for T4 (fits 16GB VRAM with lowvram)
 - dest: diffusion_models/wan2.1_14B_SCAIL_2_nvfp4_mxpf8_mix.safetensors
   source: hf://Comfy-Org/SCAIL-2
   remote: diffusion_models/wan2.1_14B_SCAIL_2_nvfp4_mxpf8_mix.safetensors
   revision: fe3c728bc793ba21ca674688f822afb709ad44fb
   size_gb: 11.02
-  notes: "SCAIL-2 nvfp4 — smallest official quant"
+  notes: SCAIL-2 nvfp4 — smallest official quant
 - dest: diffusion_models/wan2.1_vace_14B_fp16.safetensors
   source: hf://Comfy-Org/Wan_2.1_ComfyUI_repackaged
   remote: split_files/diffusion_models/wan2.1_vace_14B_fp16.safetensors
   revision: 123acf1cc74bccbb9bfff8ac1ee72edc08c2341d
   size_gb: 34.68
-  notes: "Official VACE 14B — TOO BIG for free T4 (16GB VRAM). Use 1.3B for T4."
+  notes: Official VACE 14B — TOO BIG for free T4 (16GB VRAM). Use 1.3B for T4.
 - dest: clip/clip_vit_l_14.safetensors
   source: hf://openai/clip-vit-large-patch14
   remote: model.safetensors
   revision: 32bd64288804d66eefd0ccbe215aa642df71cc41
   size_gb: 1.71
-  notes: "CLIP-L — for SD1.5 / classic workflows that need separate CLIP loader"
+  notes: CLIP-L — for SD1.5 / classic workflows that need separate CLIP loader
 - dest: controlnet/control_v11p_sd15_canny.safetensors
   source: hf://lllyasviel/sd-controlnet-canny
   remote: diffusion_pytorch_model.safetensors
   revision: 7f2f69197050967007f6bbd23ab5e52f0384162a
   size_gb: 1.45
-  notes: "ControlNet Canny for SD1.5 — edge-guided generation"
-
+  notes: ControlNet Canny for SD1.5 — edge-guided generation
 bundles:
   z-image-turbo-t4:
-    - diffusion_models/z_image_turbo_int8_convrot.safetensors
-    - text_encoders/qwen_3_4b_fp8_mixed.safetensors
-    - vae/ae.safetensors
-    - loras/z_image_turbo_distill_patch_lora_bf16.safetensors
+  - diffusion_models/z_image_turbo_int8_convrot.safetensors
+  - text_encoders/qwen_3_4b_fp8_mixed.safetensors
+  - vae/ae.safetensors
+  - loras/z_image_turbo_distill_patch_lora_bf16.safetensors
   z-image-turbo:
-    - diffusion_models/z_image_turbo_bf16.safetensors
-    - text_encoders/qwen_3_4b.safetensors
-    - vae/ae.safetensors
-    - loras/z_image_turbo_distill_patch_lora_bf16.safetensors
+  - diffusion_models/z_image_turbo_bf16.safetensors
+  - text_encoders/qwen_3_4b.safetensors
+  - vae/ae.safetensors
+  - loras/z_image_turbo_distill_patch_lora_bf16.safetensors
   sd15-classic:
-    - checkpoints/v1-5-pruned-emaonly.safetensors
-    - vae/vae-ft-mse-840000-ema-pruned.safetensors
-    - clip/clip_vit_l_14.safetensors
-    - controlnet/control_v11p_sd15_canny.safetensors
+  - checkpoints/v1-5-pruned-emaonly.safetensors
+  - vae/vae-ft-mse-840000-ema-pruned.safetensors
+  - clip/clip_vit_l_14.safetensors
+  - controlnet/control_v11p_sd15_canny.safetensors
   qwen-edit-2511:
-    - diffusion_models/qwen_image_edit_2511_fp8mixed.safetensors
-    - text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors
-    - vae/qwen_image_vae.safetensors
-    - loras/Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors
-    - upscale_models/4x-UltraSharp.pth
+  - diffusion_models/qwen_image_edit_2511_fp8mixed.safetensors
+  - text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors
+  - vae/qwen_image_vae.safetensors
+  - loras/Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors
+  - upscale_models/4x-UltraSharp.pth
   qwen-image-2.1-edit:
-    - diffusion_models/qwen_image_2.1_int8_convrot.safetensors
-    - text_encoders/qwen3vl_8b_int8_convrot.safetensors
-    - vae/qwen_image_2.1_vae_bf16.safetensors
-    - upscale_models/4x-UltraSharp.pth
+  - diffusion_models/qwen_image_2.1_int8_convrot.safetensors
+  - text_encoders/qwen3.5_9b_qwen_image_2.1_pe_i2i.int8_convrot.safetensors
+  - text_encoders/qwen3vl_8b_int8_convrot.safetensors
+  - vae/qwen_image_2.1_vae_bf16.safetensors
+  - upscale_models/4x-UltraSharp.pth
   flux2-klein:
-    - diffusion_models/flux-2-klein-4b-Q8_0.gguf
-    - text_encoders/qwen_3_4b_fp4_flux2.safetensors
-    - vae/flux2-vae.safetensors
-    - upscale_models/4x-UltraSharp.pth
+  - diffusion_models/flux-2-klein-4b-Q8_0.gguf
+  - text_encoders/qwen_3_4b_fp4_flux2.safetensors
+  - vae/flux2-vae.safetensors
+  - upscale_models/4x-UltraSharp.pth
   chatterbox-tts:
-    - chatterbox/chatterbox/t3_cfg.safetensors
-    - chatterbox/chatterbox/s3gen.safetensors
-    - chatterbox/chatterbox/ve.safetensors
-    - chatterbox/chatterbox/conds.pt
-    - chatterbox/chatterbox_multilingual/t3_mtl23ls_v2.safetensors
-    - chatterbox/chatterbox_multilingual/s3gen.pt
-    - chatterbox/chatterbox_multilingual/ve.pt
-    - chatterbox/chatterbox_multilingual/conds.pt
-    - chatterbox/chatterbox_turbo/t3_turbo_v1.safetensors
-    - chatterbox/chatterbox_turbo/s3gen_meanflow.safetensors
-    - chatterbox/chatterbox_turbo/ve.safetensors
-    - chatterbox/chatterbox_turbo/conds.pt
-    - chatterbox/chatterbox_vc/s3gen.pt
-    - chatterbox/chatterbox_vc/conds.pt
+  - chatterbox/chatterbox/t3_cfg.safetensors
+  - chatterbox/chatterbox/s3gen.safetensors
+  - chatterbox/chatterbox/ve.safetensors
+  - chatterbox/chatterbox/conds.pt
+  - chatterbox/chatterbox_multilingual/t3_mtl23ls_v2.safetensors
+  - chatterbox/chatterbox_multilingual/s3gen.pt
+  - chatterbox/chatterbox_multilingual/ve.pt
+  - chatterbox/chatterbox_multilingual/conds.pt
+  - chatterbox/chatterbox_turbo/t3_turbo_v1.safetensors
+  - chatterbox/chatterbox_turbo/s3gen_meanflow.safetensors
+  - chatterbox/chatterbox_turbo/ve.safetensors
+  - chatterbox/chatterbox_turbo/conds.pt
+  - chatterbox/chatterbox_vc/s3gen.pt
+  - chatterbox/chatterbox_vc/conds.pt
   depth-3d-trellis:
-    - diffusion_models/lotus-depth-d-v1-1.safetensors
-    - clip_vision/dino_v3_L_naf_fp32.safetensors
-    - vae/trellis_2_shape_vae_bf16.safetensors
-    - vae/trellis_2_texture_vae_bf16.safetensors
+  - diffusion_models/lotus-depth-d-v1-1.safetensors
+  - clip_vision/dino_v3_L_naf_fp32.safetensors
+  - vae/trellis_2_shape_vae_bf16.safetensors
+  - vae/trellis_2_texture_vae_bf16.safetensors
   3d-pixal3d-trellis2:
-    - diffusion_models/pixal3d_int8_convrot.safetensors
-    - diffusion_models/trellis_2_int8_convrot.safetensors
-    - clip_vision/dino_v3_L_naf_fp32.safetensors
-    - vae/trellis_2_shape_vae_bf16.safetensors
-    - vae/trellis_2_texture_vae_bf16.safetensors
-    - geometry_estimation/moge_2_vitl_normal_fp16.safetensors
-    - background_removal/birefnet.safetensors
+  - diffusion_models/pixal3d_int8_convrot.safetensors
+  - diffusion_models/trellis_2_int8_convrot.safetensors
+  - clip_vision/dino_v3_L_naf_fp32.safetensors
+  - vae/trellis_2_shape_vae_bf16.safetensors
+  - vae/trellis_2_texture_vae_bf16.safetensors
+  - geometry_estimation/moge_2_vitl_normal_fp16.safetensors
+  - background_removal/birefnet.safetensors
   wan-vace-t4:
-    - diffusion_models/wan2.1_vace_1.3B_fp16.safetensors
-    - text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors
-    - vae/wan_2.1_vae.safetensors
-    - clip_vision/clip_vision_h.safetensors
-    - checkpoints/sam3.1_multiplex_fp16.safetensors
-    - loras/Wan21_CausVid_14B_T2V_lora_rank32.safetensors
+  - diffusion_models/wan2.1_vace_1.3B_fp16.safetensors
+  - text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors
+  - vae/wan_2.1_vae.safetensors
+  - clip_vision/clip_vision_h.safetensors
+  - checkpoints/sam3.1_multiplex_fp16.safetensors
+  - loras/Wan21_CausVid_14B_T2V_lora_rank32.safetensors
   wan-scail2-t4:
-    - diffusion_models/wan2.1_14B_SCAIL_2_int8_convrot.safetensors
-    - text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors
-    - vae/Wan2_1_VAE_bf16.safetensors
-    - clip_vision/clip_vision_h.safetensors
-    - loras/wan2.1_SCAIL_2_DPO_lora_bf16.safetensors
+  - diffusion_models/wan2.1_14B_SCAIL_2_int8_convrot.safetensors
+  - text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors
+  - vae/Wan2_1_VAE_bf16.safetensors
+  - clip_vision/clip_vision_h.safetensors
+  - loras/wan2.1_SCAIL_2_DPO_lora_bf16.safetensors
   extras:
-    - background_removal/birefnet.safetensors
-    - loras/Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors
-    - diffusion_models/pixal3d_multiview_int8_convrot.safetensors
-    - text_encoders/qwen3.5_9b_qwen_image_2.1_pe_i2i.int8_convrot.safetensors
+  - background_removal/birefnet.safetensors
+  - loras/Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors
+  - diffusion_models/pixal3d_multiview_int8_convrot.safetensors
+  - text_encoders/qwen3.5_9b_qwen_image_2.1_pe_i2i.int8_convrot.safetensors
   llm-qwen3-8b-t4:
-    - text_encoders/Qwen3-8B-Q4_K_M.gguf
+  - text_encoders/Qwen3-8B-Q4_K_M.gguf
   llm-qwen2.5-7b-t4:
-    - text_encoders/Qwen2.5-7B-Instruct-Q4_K_M.gguf
+  - text_encoders/Qwen2.5-7B-Instruct-Q4_K_M.gguf
   llm-qwen2.5-3b-t4:
-    - text_encoders/Qwen2.5-3B-Instruct-q4_k_m.gguf
+  - text_encoders/Qwen2.5-3B-Instruct-q4_k_m.gguf
   llm-qwen2.5-1.5b-t4:
-    - text_encoders/Qwen2.5-1.5B-Instruct-q4_k_m.gguf
+  - text_encoders/Qwen2.5-1.5B-Instruct-q4_k_m.gguf
   llm_gemma4_text_gen:
-    - text_encoders/gemma4_e4b_it_fp8_scaled.safetensors
+  - text_encoders/gemma4_e4b_it_fp8_scaled.safetensors
   llm_gemma4_text_gen_t4:
-    - text_encoders/gemma4_e2b_it_int8_convrot.safetensors
+  - text_encoders/gemma4_e2b_it_int8_convrot.safetensors
   llm_qwen3_5_text_gen:
-    - text_encoders/qwen3.5_4b_bf16.safetensors
+  - text_encoders/qwen3.5_4b_bf16.safetensors
   llm_qwen3_5_text_gen_t4:
-    - text_encoders/qwen3.5_2b_bf16.safetensors
+  - text_encoders/qwen3.5_2b_bf16.safetensors
   starter-t4:
-    - diffusion_models/z_image_turbo_int8_convrot.safetensors
-    - text_encoders/qwen_3_4b_fp8_mixed.safetensors
-    - vae/ae.safetensors
-    - loras/z_image_turbo_distill_patch_lora_bf16.safetensors
-    - text_encoders/qwen3.5_2b_bf16.safetensors
+  - diffusion_models/z_image_turbo_int8_convrot.safetensors
+  - text_encoders/qwen_3_4b_fp8_mixed.safetensors
+  - vae/ae.safetensors
+  - loras/z_image_turbo_distill_patch_lora_bf16.safetensors
+  - text_encoders/qwen3.5_2b_bf16.safetensors
   wan-scail2-full:
-    - diffusion_models/wan2.1_14B_SCAIL_2_int8_convrot.safetensors
-    - text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors
-    - vae/Wan2_1_VAE_bf16.safetensors
-    - clip_vision/clip_vision_h.safetensors
-    - loras/wan2.1_SCAIL_2_DPO_lora_bf16.safetensors
-    - loras/lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors
+  - diffusion_models/wan2.1_14B_SCAIL_2_int8_convrot.safetensors
+  - text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors
+  - vae/Wan2_1_VAE_bf16.safetensors
+  - clip_vision/clip_vision_h.safetensors
+  - loras/wan2.1_SCAIL_2_DPO_lora_bf16.safetensors
+  - loras/lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors
   wan-vace-full:
-    - diffusion_models/wan2.1_vace_14B_fp16.safetensors
-    - text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors
-    - vae/wan_2.1_vae.safetensors
-    - clip_vision/clip_vision_h.safetensors
-    - checkpoints/sam3.1_multiplex_fp16.safetensors
-    - loras/Wan21_CausVid_14B_T2V_lora_rank32.safetensors
+  - diffusion_models/wan2.1_vace_14B_fp16.safetensors
+  - text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors
+  - vae/wan_2.1_vae.safetensors
+  - clip_vision/clip_vision_h.safetensors
+  - checkpoints/sam3.1_multiplex_fp16.safetensors
+  - loras/Wan21_CausVid_14B_T2V_lora_rank32.safetensors
