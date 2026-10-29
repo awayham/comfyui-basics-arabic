@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+"""Legacy generator — the manifest is now hand-curated.
+
+This script can only re-emit files that exist LOCALLY on this Mac, so running it
+would silently drop every cloud-only entry (MiniMax H3, Wan 2.1, Qwen-Image 2.1,
+z-image, LLM GGUFs ...). It therefore refuses to overwrite `model_manifest.yaml`
+unless every existing dest is still reproduced; use --force only when you really
+mean to rebuild the whole catalog from local disk.
+"""
 import os, sys, json, yaml
 from pathlib import Path
 from huggingface_hub import HfApi, HfFileSystem
@@ -272,6 +280,16 @@ def main():
         print("[BUNDLE-GAP] حزم تشير لملفات غير موجودة في files:")
         for g in gaps:
             print(f"  - {g}")
+    # حماية: لا تُطمس مدخلات منسّقة يدوياً (سحابية فقط) عند إعادة التوليد
+    if OUT.exists() and "--force" not in sys.argv:
+        existing = yaml.safe_load(OUT.read_text(encoding="utf-8")) or {}
+        old_dests = {f["dest"] for f in existing.get("files", [])}
+        new_dests = {f["dest"] for f in files}
+        lost = sorted(old_dests - new_dests)
+        if lost:
+            print(f"[ABORT] إعادة التوليد ستُسقط {len(lost)} مدخلاً موجوداً — مثال: {lost[:3]}")
+            print("        أضِف --force إن كنت تريد إعادة بناء الكتالوج من القرص المحلي فقط.")
+            return
     OUT.write_text(yaml.safe_dump(manifest, allow_unicode=True, sort_keys=False), encoding="utf-8")
     REPORT.write_text(json.dumps({"verified": len(verified), "orphans": orphans, "mismatched": mismatched}, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"\nwrote {OUT}")
